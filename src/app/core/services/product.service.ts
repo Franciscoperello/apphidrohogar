@@ -9,6 +9,7 @@ import { APIResponseModel, ICategory, IProduct } from '../model/Models';
 export class ProductService {
 
   apiUrl: string = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/products/';
+  apiUrl2: string = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/products/';
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +21,7 @@ export class ProductService {
     return this.http.get<APIResponseModel>(`${this.apiUrl}GetProductsByCategory/${categoria}`);
   }
   getAllCategory(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${this.apiUrl}GetAllCategories`);
+    return this.http.get<ICategory[]>(`${this.apiUrl2}GetAllCategories`);
   }
   getProductById(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.apiUrl}GetProductById/${id}`);
