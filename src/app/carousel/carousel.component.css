@@ -1,0 +1,32 @@
+.fondoCarr {
+    background-color: #547EA8;
+    color: #212529;
+}
+
+.fondoCarr a {
+    color: white;
+    font-size: large;
+}
+
+.textCarousel {
+    font-family: "Gluten", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: bold;
+    font-variation-settings:
+        "slnt" 0;
+    color: #ffffff;
+}
+
+.textEnl {
+    text-decoration: none;
+}
+
+h3{
+    font-family: "Gluten", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+  }

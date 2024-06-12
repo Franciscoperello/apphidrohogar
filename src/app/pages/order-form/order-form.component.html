@@ -1,0 +1,25 @@
+<div class="container mt-3">
+  <h2>Realizar Pedido</h2>
+  <form (ngSubmit)="placeOrder()">
+    <div class="mb-3 mt-3">
+      <label for="name">Nombre:</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required>
+    </div>
+    <div class="mb-3">
+      <label for="address">Dirección de Envío:</label>
+      <input type="text" class="form-control" id="address" [(ngModel)]="address" name="address" required>
+    </div>
+    <div class="mb-3">
+      <label for="phone">Número de Teléfono:</label>
+      <input type="text" class="form-control" id="phone" [(ngModel)]="phone" name="phone" required>
+    </div>
+    <button type="submit">Enviar Pedido</button>
+  </form>
+  <div class="container mb-3 mt-3">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Carrito</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Dirección</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Confirmación</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div *ngIf="cart">
+  <h2>Carrito de compras</h2>
+  <div class="container mb-3">
+    <div *ngIf="products.length > 0" class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Carrito</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Dirección</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Confirmación</div>
+    </div>
+  </div>
+  <h1 *ngIf="products.length <= 0">EL CARRITO ESTÁ VACIO</h1>
+  <button *ngIf="products.length > 0" class="mb-4" (click)="clearCart()">Eliminar todos los productos</button>
+  <div class="row">
+    <div *ngFor="let item of products" class="col-8 col-lg-3 col-md-4 col-sm-6 mb-2">
+      <div class="card">
+        <img [src]="item.product.imgSrc" class="img-fluid card-img-top ">
+        <div class="card-body">
+          <h3 class="card-title">
+            Producto: {{ item.product.nombre }}
+          </h3>
+          <p class="card-text"> Descripción: {{ item.product.descripcion }}</p>
+          <p class="card-text">Características: {{ item.product.caracteristicas }}</p>
+          <p class="card-text">Categoría: {{ item.product.categoria }}</p>
+          <p class="text-danger fs-4 card-text " *ngIf="item.product.precioOferta" >Precio oferta: {{ item.product.precioOferta }}€</p>
+          <p class="card-text" *ngIf="!item.product.precioOferta">Precio: {{ item.product.precio }}€</p>
+          <p class="card-text">Cantidad: <button (click)="decreaseQuantity(item.product.id)">-</button><span class="fs-2">  {{ item.quantity }}  </span> <button (click)="increaseQuantity(item.product.id)">+</button> </p>
+          <button (click)="removeProduct(item.product.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <h3 *ngIf="products.length > 0">Total: {{ getTotalCost()}} €</h3>
+    <button class="botonInt col-3" *ngIf="products.length > 0"><a href="/order-form">Realizar Pedido</a></button>
+  </div>
+</div>

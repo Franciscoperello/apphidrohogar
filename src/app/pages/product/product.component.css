@@ -1,0 +1,27 @@
+.imagen {
+    max-width: 100%;
+    max-height: 600px; /* Ajusta la altura según el contenedor padre */
+  object-fit: cover; /* Mantiene la proporción y recorta si es necesario */
+  }
+
+  .mayusc{
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .mayusc a {
+    color: #6A6556;
+  }
+
+  .mayusc:hover{
+    background: #BEA25C;
+  }
+
+  .fondoMayusc{
+    background-color: #BEA25C;
+  }
+
+  .fondo{
+    background: #468DD3;
+  }
+  

@@ -1,0 +1,11 @@
+@import url("https://fonts.google.com/specimen/Gluten/about?preview.size=42&stylecount=6");
+/*fuente título https://fonts.google.com/specimen/Gluten/about?preview.size=42&stylecount=6 */
+
+.gluten-footerClass{
+    font-family: "Gluten", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+  }

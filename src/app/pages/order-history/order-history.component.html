@@ -1,0 +1,51 @@
+<div class="row">
+  <div *ngIf="orders.length >= 0">
+    <h2>Historial de Pedidos</h2>
+    <div *ngFor="let order of orders">
+      <div class="col-12">
+        <h3 class="fondoOffInt">Pedido realizado el {{ order.orderDate | date:'full' | uppercase }}</h3> <!--Aquí se utiliza la fecha
+         mirar app.routes.ts-->
+         <div class="container mb-3">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+              style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Carrito</div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+              style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Dirección</div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+              style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Confirmación</div>
+          </div>
+        </div>
+        <p>Nombre: {{ order.name }}</p>
+        <p>Dirección: {{ order.address }}</p>
+        <p>Teléfono: {{ order.phone }}</p>
+        <div class="row">
+          <div class="col-6">
+            <ul *ngFor="let item of order.items">
+              <li>
+                <p>Producto: {{item.productInfo?.nombre }}</p>
+                <p>Precio: {{ item.productInfo?.precio }}€</p>
+                <p>Cantidad: {{ item.quantity }}</p>
+            </ul>
+          </div>
+          <div class="col-6 ">
+            <h3>Artículos:</h3>
+            <div class="row ">
+              <div class="col-2 m-1 p-2 fondoOffInt" *ngFor="let item of order.items">
+                <img [src]="item.productInfo?.imgSrc" class="img-fluid card-img-top" alt="imagenProducto">
+                <div class="card-body">
+                  <h4 class="">{{item.productInfo?.nombre}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5 class=""><strong>Precio Total del Pedido: {{ order.totalPrice }}€</strong></h5>
+      </div>
+      <hr>
+    </div>
+  </div>
+  
+  <div *ngIf="orders.length === 0">
+    <p>No se encontraron pedidos.</p>
+  </div>
+</div>

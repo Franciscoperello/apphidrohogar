@@ -1,0 +1,325 @@
+<!-- https://www.pexels.com/es-ES/license/ Licencia de imágenes -->
+<!-- https://www.pexels.com/es-es/buscar/plumber/ -->
+<!-- https://www.pexels.com/es-es/foto/modelo-maqueta-colorido-de-colores-7772528/ -->
+
+<div class="bg-dark text-white position-relative container-fluid clear-both z-1000">
+
+  <h1 class="pt-2 text-center tituloFuente display-2">
+    <a href="" style="text-decoration: none;">
+      <!-- <img src="../assets/fotoFondo/_79bb4b24-977a-4958-8137-90122bbc5e39.jpg" class="rounded-circle img-small" alt="ImagenWeb"> -->
+      HidroHogar
+    </a>
+  </h1>
+  <!--Navegador superior-->
+  <div class="row">
+    <div class="d-sm-none d-none d-lg-flex d-md-flex">
+      <nav
+        class="navbar  navbar-expand-sm bg-dark navbar-dark col-lg-6 col-md-6 col-sm-3 col-3 d-flex justify-content-start ">
+        <div class="container-fluid ">
+          <ul class="navbar-nav">
+            <a class="navbar-brand" (click)="mostrarToast()"> <!-- Cambiado el id por un evento de clic -->
+              <img src="../assets/fotoFondo/marioBros.jpg" alt="logo" class="rounded-pill" height="45px">
+            </a> <!--Uso de toast bootstrap5 para darle interactividad al logo-->
+            <button class="navbar-toggler d-inline-block" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#demo" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <li class="nav-item">
+              <a class="nav-link active" href="./products" data-bs-toggle="tooltip" title="Productos">Productos</a>
+            </li>
+            <li class="nav-item"> <!-- Le he aplicado tooltip para que cuando pase el ratón 
+            por encima, salga una breve descripción de qué hace cada cosa-->
+              <a class="nav-link" href="./" data-bs-toggle="tooltip" title="Volver a Inicio">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" data-bs-toggle="tooltip"
+                title="Llegarán nuevos productos y servicios.." aria-disabled="true">Próximamente</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav
+        class="navbar navbar-expand-sm bg-dark navbar-dark col-lg-6 col-md-6 col-sm-9 col-9 d-flex justify-content-end">
+        <ul>
+          <li *ngIf="loggedUSerData" class="nav-item dropdown me-3 mt-3">
+            <!-- Botón para cerrar sesión si está logueado -->
+            <button class="btn btn-danger rounded-0 px-3 " (click)="onLogout()"><a href="/" id="logOut"><i
+                  class="bi bi-box-arrow-right"></i>Log out</a></button>
+          </li>
+          <li class="nav-item dropdown me-3 ">
+            <button class="btn btn-dark rounded-circle " data-bs-toggle="tooltip" title="Perfil" type="button"
+              id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <!--&#9660;--><i class="bi bi-person-circle fs-2"></i>
+            </button>
+            <ul *ngIf="!loggedUSerData" class="dropdown-menu me-5 custom-dropdown-menu justify-content-center"
+              aria-labelledby="dropdownMenuButton">
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModel">
+                  <button class="btn rounded-0 me-5">Login</button>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                  <button class="btn rounded-0 me-5">Register</button>
+                </a>
+              </li>
+            </ul>
+            <ul *ngIf="loggedUSerData" class="row dropdown-menu me-5 custom-dropdown-menu justify-content-center"
+              aria-labelledby="dropdownMenuButton">
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModel">
+                  <button class="btn rounded-0 me-3">Perfil</button>
+                </a>
+              </li>
+              <li *ngIf="loggedUSerData.admin">
+                <a class="dropdown-item" href="./admin-product">
+                  <button class="btn rounded-0 me-3">Administrar Productos</button>
+                </a>
+                <a class="dropdown-item" href="./order-history">
+                  <button class="btn rounded-0 me-3">Pedidos</button>
+                </a>
+              </li>
+              <li *ngIf="!loggedUSerData.admin">
+                <a class="dropdown-item" href="./order-history">
+                  <button class="btn rounded-0 me-3">Mis pedidos</button>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown mt-3">
+            <a class="" data-bs-toggle="tooltip" title="Ir al carrito" href="/cart">
+              <i class="fa fa-cart-shopping fs-3" style="color: #ffffff;"></i>
+              <span class="badge bg-danger">{{ cartItemCount }}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!--Barra lateral tamaño medio-->
+    <div class="offcanvas offcanvas-start fondoOff" id="demo">
+      <div class="offcanvas-header">
+        <h1 class="offcanvas-title gluten-offCanvas">Menú HidroHogar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <!--Uso de fuente gluten https://fonts.google.com/specimen/Gluten/about?preview.size=42&stylecount=6 -->
+      <div class="offcanvas-body gluten-footerClass fondoOffInt">
+        <div class="row">
+          <ul class="col-12 justify-content-start">
+            <li *ngIf="loggedUSerData" class="nav-item dropdown ps-1 mt-2 me-5">
+              <!-- Botón para cerrar sesión si está logueado -->
+              <button class="btn btn-danger rounded-0 px-3 " (click)="onLogout()"><a href="/" id="logOut"><i
+                    class="bi bi-box-arrow-right"></i>Log out</a></button>
+            </li>
+            <li>
+              <a class="" data-bs-toggle="tooltip" title="Ir al carrito" href="/cart">
+                <i class="fa fa-cart-shopping fs-3 pt-3" style="color: #ffffff;"></i>
+                <span class="badge bg-danger">{{ cartItemCount }}</span>
+              </a>
+            </li>
+            <li> <!--Uso de tooltip https://www.w3schools.com/bootstrap5/bootstrap_tooltip.php -->
+              <button class="btn fondoOffInt pt-2 mt-1 rounded-circle" data-bs-toggle="tooltip" title="Perfil"
+                type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <!--&#9660;--><i class="bi bi-person-circle iconoLog fs-2"></i>
+              </button>
+              <ul *ngIf="!loggedUSerData" class="dropdown-menu me-5 custom-dropdown-menu justify-content-center"
+                aria-labelledby="dropdownMenuButton">
+                <li>
+                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModel">
+                    <button class="btn rounded-0 me-5">Login</button>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <button class="btn rounded-0 me-5">Register</button>
+                  </a>
+                </li>
+              </ul>
+              <div class="row">
+                <ul *ngIf="loggedUSerData" class="row dropdown-menu me-5 custom-dropdown-menu justify-content-center"
+                  aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <a class="col-12 dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModel">
+                      <button class="btn rounded-0 ">Perfil</button>
+                    </a>
+                  </li>
+                  <li *ngIf="loggedUSerData.admin"> <!--Comprueba si es admin-->
+                    <a class="col-12 dropdown-item" href="./admin-product">
+                      <button class="btn rounded-0 ">Administrar Productos</button>
+                    </a>
+                    <a class="col-12 dropdown-item" href="./order-history">
+                      <button class="btn rounded-0">Pedidos</button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="text-white fs-1" href="./">
+          <i class="bi bi-house fs-1 text-light"></i>Home
+        </a><br>
+        <a class="text-white fs-1 mt-3" href="./products"><i class="bi bi-book fs-1"></i>Productos</a><br>
+      </div>
+    </div>
+    <!--Display para barra lateral-->
+    <div class=" d-sm-block d-block d-lg-none d-md-none">
+      <nav class="navbar navbar-expand-md bg-dark navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" (click)="mostrarToast()" href="#">
+            <img src="../assets/fotoFondo/marioBros.jpg" alt="logo" class="rounded-pill" height="45px">
+          </a>
+          <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <!-- Para que se muestre el mensajito de Mario -->
+    <div class="toast" #toast>
+      <div class="toast-header">
+        <strong class="me-auto">It´s me!, Mario el fontanero</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body text-dark">
+        <p>Soy tu querido amigo Mario el fontanero, estoy formándome para poder
+          guiarte en nuestra web y propoorcionarte las mejores ofertas.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid  mt-2 main-content flex-grow-1">
+  <!--<app-product></app-product>-->
+  <!-- Metemos lo necesario -->
+  <h2 class="main-content " *ngIf="loggedUSerData">Bienvenido, {{ loggedUSerData.name }}</h2>
+  <router-outlet></router-outlet>
+</div>
+
+<!--Registro-->
+<div class="modal" id="myModal" #registerModal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bodyLog">
+      <h3 class="titulo d-flex justify-content-center mt-3">Bienvenidos a HidroHogar</h3>
+      <hr>
+      <div class="ring parent">
+        <div class="pie-form">
+          <a href="#">¿Perdiste tu contraseña?</a>
+          <a href="#">¿No tienes Cuenta? Registrate</a>
+          <hr>
+        </div>
+        <form class="cajaInterior m-5 p-2">
+          <div class="pb-4">
+            <button type="button" class="close-button fs-4" data-bs-dismiss="modal">Cerrar<i
+              class="bi bi-x-circle ps-3 fs-4"></i>  </button>
+            <h2 class="ms-5 mb-1"><i class="bi bi-people"></i> Regístrese</h2>
+            <div class="mb-1 mt-3">
+              <label for="name" class="form-label">Nombre y apellidos: </label>
+              <input type="text" class="form-control" [(ngModel)]="registerObj.name" name="name" id="name"
+                placeholder="Nombre" required>
+            </div>
+            <div class="mb-1">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" class="form-control" [(ngModel)]="registerObj.address" name="address" id="address"
+                placeholder="Dirección">
+            </div>
+            <div class="mb-1">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" [(ngModel)]="registerObj.email" name="email" id="email"
+                placeholder="Correo" required>
+            </div>
+            <div class="mb-1">
+              <label for="password" class="form-label">Contraseña: </label>
+              <input type="password" class="form-control" [(ngModel)]="registerObj.password" name="password"
+                id="password" placeholder="Contraseña" required>
+            </div>
+            <div class="mb-1">
+              <label for="confirmPassword">Confirme contraseña: </label>
+              <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
+                id="confirmPassword" placeholder="Confirmar Contraseña" required>
+            </div>
+            <button type="submit" class="mt-2  botonInt col-12" (click)="onRegister()"><i class="bi bi-people"></i>
+              Registrarse</button>
+            <div *ngIf="passwordMismatch" class="alert alert-danger ms-5 me-5 mt-2">
+              Las contraseñas no coinciden.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Login-->
+<div class="modal" id="loginModel" #loginModal>
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bodyLog">
+      <h3 class="titulo d-flex justify-content-center mt-3">Bienvenidos a HidroHogar</h3>
+      <hr>
+      <div class="ring parent ">
+        <div class="pie-form">
+          <a href="#">¿Perdiste tu contraseña?</a>
+          <a href="#">¿No tienes Cuenta? Registrate</a>
+          <hr>
+        </div>
+        <form class="cajaInterior m-5 p-2 ">
+          <div class="pb-5">
+            <button type="button" class="close-button fs-4" data-bs-dismiss="modal">Cerrar<i
+              class="bi bi-x-circle ps-3 fs-4"></i>  </button>
+            <div *ngIf="loginErrorMessage" class="alert alert-danger ms-5 me-5">
+              {{ loginErrorMessage }}
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="email" class="form-label">Correo:</label>
+              <input type="text" class="form-control" [(ngModel)]="loginObj.email" id="email"
+                placeholder="Introduce tu correo" name="email" required>
+            </div>
+            <div class="mb-3 pb-4">
+              <label for="password" class="form-label">Contraseña:</label>
+              <input type="password" class="form-control" [(ngModel)]="loginObj.password" id="password"
+                placeholder="Introduce tu contraseña" name="password" required>
+            </div>
+            <button type="button" class="btn botonInt col-12" (click)="onLogin()"><i class="bi bi-door-open-fill"></i>
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--Info Usuario-->
+<div class="modal " id="profileModel" #profileModel>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content cajaInterior">
+      <div class=" modal-header ">
+        <h5 class="modal-title">Perfil de Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="d-flex justify-content-center">Id del Usuario: {{ loggedUSerData?.id }}</p>
+        <p class="d-flex justify-content-center">Nombre: {{ loggedUSerData?.name }}</p>
+        <p class="d-flex justify-content-center">Correo electrónico: {{ loggedUSerData?.email }}</p>
+        <p class="d-flex justify-content-center">Calle del usuario: {{ loggedUSerData?.address }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="row gluten-footerClass">
+  <div class="row mt-2 ms-2 pt-2 pb-2 col-12  col-sm-12 col-md-12 col-lg-12 text-white bg-dark text-center ps-3">
+    <div class="col-6 col-sm-4 col-md-3 h5">Quiénes Somos</div>
+    <div class="col-6 col-sm-4 col-md-3 h5">Trabaja con nosotros</div>
+    <div class="col-6 col-sm-4 col-md-3 h5">Tarifas de envio</div>
+    <div class="col-6 col-sm-4 col-md-3 h5">Localizar un pedido</div>
+    <div class="col-6 col-sm-4 col-md-3 h5">Devolver un producto</div>
+    <div class="col-12 mt-3">
+      <p>&copy; HidroHogar {{anioActual}}</p>
+      <p>Fecha: {{fechaActual}}</p>
+    </div>
+  </div>
+</footer>

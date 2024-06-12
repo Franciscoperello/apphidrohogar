@@ -1,0 +1,44 @@
+<div class="container-fluid col 12">
+    <label for="Filtrar">Filtrar por:</label>
+    <select class="ms-3 mb-1" id="filtrar" name="filtrar" (change)="onFilterChange($event)">
+      <option value="">Sin filtro</option>
+      <option value="alto">Precio más alto</option>
+      <option value="bajo">Precio más bajo</option>
+      <option value="oferta">Productos en oferta</option>
+    </select>
+  </div>
+  <div class="container-fluid  ps-3">
+    <div class="row">
+      <div class="col">
+        <ng-container *ngIf="categoryList$ | async as categoryList">
+          <button *ngFor="let category of categoryList" class="btn btn-secondary m-2" (click)="getProductByCategory(category.nombre)">
+            {{ category.nombre }}
+          </button>
+          <button class="btn btn-secondary m-2" (click)="getAllProduct()">Todos los productos</button>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="productList.length === 0" class="col">
+        No hay productos
+      </div>
+      <div *ngFor="let item of productList" class="col-6 col-lg-3 mb-4">
+        <div class="card h-100 ">       
+          <a [routerLink]="['/products', item.id]">
+            <img [src]="item.imgSrc" class="imagen card-img-top ">
+          </a>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a [routerLink]="['/products', item.id]" class="mayusc">{{ item.nombre }}</a>
+            </h3>
+            <div *ngIf="item.precioOferta && item.precioOferta > 0">
+              <h3 class="text-decoration-line-through">Antes :{{ item.precio }}€</h3>
+              <h2 class="text-danger" style="font-weight: bold;">OFERTA: {{ item.precioOferta }}€</h2>
+            </div>
+            <h2 *ngIf="!item.precioOferta || item.precioOferta === 0">Precio: {{ item.precio }}€</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

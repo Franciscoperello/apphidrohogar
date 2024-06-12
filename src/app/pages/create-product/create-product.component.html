@@ -1,0 +1,60 @@
+<form>
+  <!-- <label>
+    Nombre:
+    <input [(ngModel)]="product.nombre" name="nombre">
+  </label>
+  <label>
+    Descripción:
+    <input [(ngModel)]="product.descripcion" name="descripcion">
+  </label>
+  <label>
+    Características:
+    <input [(ngModel)]="product.caracteristicas" name="caracteristicas">
+  </label>
+  <label>
+    Categoría:
+    <input [(ngModel)]="product.categoria" name="categoria">
+  </label> -->
+  <div class="row">
+    <div class="col">
+      <label for="nombre"> Nombre del producto: </label>
+      <input type="text" class="form-control" name="nombre" [(ngModel)]="product.nombre"
+        placeholder="Introduce tu nombre del producto" id="nombre">
+    </div>
+    <div class="col">
+      <label for="descripcion"> Descripción del producto: </label>
+      <input type="text" class="form-control" name="descripcion" [(ngModel)]="product.descripcion"
+        placeholder="Introduce la descripción del producto" id="descripcion">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col pt-2">
+      <label for="caracteristicas"> Características del producto: </label>
+      <input type="text" class="form-control" name="caracteristicas" [(ngModel)]="product.caracteristicas"
+        placeholder="Introduce características del producto" id="caracteristicas">
+    </div>
+    <div class="col">
+      <label for="categoria" class="form-label">Categoría del producto:</label>
+      <select class="form-select" id="categoria" name="categoria" [(ngModel)]="product.categoria">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categoryList" [value]="categoria.nombre">{{categoria.nombre}}</option>
+      </select>
+    </div>
+  </div>
+  <label class="p-3">
+    Precio:
+    <input [(ngModel)]="product.precio" name="precio">
+  </label>
+  <label class="p-3">
+    Precio Oferta:
+    <input [(ngModel)]="product.precioOferta" name="precioOferta">
+  </label>
+  <label for="image" class="p-3">Imagen:
+    <input type="file" id="image" (change)="onFileSelected($event)">
+  </label>
+
+  <button type="button" class=" p-3 ms-3 btn btn-info" (click)="uploadFile()">
+    <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+    Crear Producto
+  </button>
+</form>

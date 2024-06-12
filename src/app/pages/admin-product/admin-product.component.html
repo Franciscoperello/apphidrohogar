@@ -1,0 +1,28 @@
+<div class="row">
+  <div>
+    <!--<button><a href="./create-product">Crear Productos</a></button> -->
+    <button class="btn btn-primary mb-3 ms-4">
+      <span class="spinner-border spinner-border-sm"></span>
+      <a class="text-dark fs-3" style="text-decoration: none;" href="./create-product">Crear Productos</a>
+    </button>
+  </div>
+  <div *ngIf="productList.length === 0" class="col">
+    No hay productos en oferta
+  </div>
+  <div *ngFor="let item of productList" class="col-6 col-lg-3 mb-4">
+    <div class="card h-100 ">
+      <img [src]="item.imgSrc" class="imagen card-img-top ">
+      <div class="card-body">
+        <h3 class="card-title">
+          <a [routerLink]="['/products', item.id]" class="mayusc">{{ item.nombre }}</a>
+        </h3>
+        <div *ngIf="item.precioOferta && item.precioOferta > 0">
+          <h3 class="text-decoration-line-through">Antes :{{ item.precio }}€</h3>
+          <h2 class="text-danger" style="font-weight: bold;">OFERTA: {{ item.precioOferta }}€</h2>
+        </div>
+        <h2 *ngIf="!item.precioOferta || item.precioOferta === 0">Precio: {{ item.precio }}€</h2>
+        <button [routerLink]="['/edit-product', item.id]">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>

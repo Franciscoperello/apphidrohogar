@@ -1,0 +1,74 @@
+<div *ngIf="product">
+  <div class="row m-3">
+    <div class="col-4 card img-fluid" style="width: 250px">
+      <img class=" card-img-top" [src]="imgSrc" alt="product.nombre" >
+    </div>
+    <div class="col-8">
+      <h3>Producto: {{product.nombre}}</h3>
+      <p>Descripción: {{product.descripcion}}</p>
+      <p>Categoría:  {{product.categoria}}</p>
+      <p>Precio sin oferta: {{product.precio}} €</p>
+      <p *ngIf="product.precioOferta" class="text-danger fs-4">Precio oferta: {{product.precioOferta}} €</p>
+    </div>
+  </div>
+  <form *ngIf="product">
+    <div class="row">
+      <div class="col-3">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" [(ngModel)]="product.nombre" name="nombre" required>
+        
+        <div class="col-12 mt-2">
+          <label for="categoria" class="form-label">Categoría del producto:</label>
+          <select class="form-select" id="categoria" name="categoria" [(ngModel)]="product.categoria">
+            <option value="" disabled selected>Selecciona una categoría</option>
+            <option *ngFor="let categoria of categoryList" [value]="categoria.nombre">{{categoria.nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" class="form-control" [(ngModel)]="product.descripcion" name="descripcion" rows="5"
+            required></textarea>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <label for="caracteristicas">Características:</label>
+          <textarea id="caracteristicas" class="form-control" [(ngModel)]="product.caracteristicas" name="caracteristicas" rows="5"
+            required></textarea>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="col-12">
+          <label for="precio">Precio: </label>
+          <div class="input-group">
+            <input id="precio" class="form-control" [(ngModel)]="product.precio" name="precio" required>
+            <span class="input-group-text">€</span> <!--Gracias a esto le ponemos al final los euros-->
+          </div>
+          <div class="col mt-3">
+            <label class="text-danger fs-4" for="precioOferta">Precio Oferta:</label>
+            <div class="input-group">
+              <input id="precioOferta" class="form-control" [(ngModel)]="product.precioOferta" name="precioOferta">
+              <span class="input-group-text">€</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="col-8 ">
+          <label for="image" class="p-3">Cambiar la imagen:
+            <input type="file" class="form-control" id="image" (change)="onFileSelected($event)">
+          </label>
+          <button type="button" class="ms-3 btn btn-info" (click)="uploadFile()"><i class="bi bi-people"></i>
+            Guardar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> 
+

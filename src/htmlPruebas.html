@@ -1,0 +1,171 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="" style="text-decoration: none;">HidroHogar</a>
+
+        <!-- Botón para mostrar el menú lateral -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menú desplegable -->
+        <div class="collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="deportesDropdown1" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Fútbol
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="deportesDropdown1">
+                        <a class="dropdown-item" href="#">La Liga EA Sport</a>
+                        <a class="dropdown-item" href="#">La Liga F</a>
+                        <a class="dropdown-item" href="#">La Liga Hypermotion</a>
+                        <a class="dropdown-item" href="#">La Liga Genuin</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="deportesDropdown2" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Baloncesto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="deportesDropdown2">
+                        <a class="dropdown-item" href="#">Liga Endesa</a>
+                        <a class="dropdown-item" href="#">Liga Endesa Femenina</a>
+                        <a class="dropdown-item" href="#">Copa Del Rey</a>
+                        <a class="dropdown-item" href="#">Super Copa Endesa</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="deportesDropdown3" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tenis
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="deportesDropdown3">
+                        <a class="dropdown-item" href="#">Ranking</a>
+                        <a class="dropdown-item" href="#">ATP Tour</a>
+                        <a class="dropdown-item" href="#">Grand Slam</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="deportesDropdown4" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Motor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="deportesDropdown4">
+                        <a class="dropdown-item" href="#">Formula 1</a>
+                        <a class="dropdown-item" href="#">Moto GP</a>
+                        <a class="dropdown-item" href="#">Nascar</a>
+                        <a class="dropdown-item" href="#">Dakar</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./products">Productos</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="/cart">
+                        <i class="fa fa-cart-shopping fs-5 me-1" style="color: #ffffff;"></i>
+                        <span class="badge bg-danger">{{ cartItemCount }}</span>
+                    </a>
+                </li>
+
+                <li *ngIf="!loggedUSerData" class="nav-item dropdown me-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#loginModel">Login</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#myModal">Register</a></li>
+                    </ul>
+                </li>
+
+                <li *ngIf="loggedUSerData" class="nav-item">
+                    <button class="btn btn-danger" (click)="onLogout()">Logout</button>
+                </li>
+            </ul>
+            <!-- Modales de login y registro -->
+            <div class="modal fade" id="myModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Registrarse</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="registerName"
+                                        [(ngModel)]="registerObj.name" name="name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="registerEmail"
+                                        [(ngModel)]="registerObj.email" name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="registerPassword"
+                                        [(ngModel)]="registerObj.password" name="password">
+                                </div>
+                                <button type="button" class="btn btn-primary"
+                                    (click)="onRegister()">Registrarse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="loginModel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Login</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="loginEmail"
+                                        [(ngModel)]="loginObj.email" name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="loginPassword"
+                                        [(ngModel)]="loginObj.password" name="password">
+                                </div>
+                                <button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-5 pt-5">
+    <!-- Menú lateral 
+    <div class="row mt-3">
+        <div class="col-12">
+            
+        </div>
+    </div>
+    -->
+    <div class="container-fluid mt-5 main-content" *ngIf="loggedUSerData">
+        <h2>Bienvenido, {{ loggedUSerData.name }}</h2>
+        <p>Email: {{ loggedUSerData.email }}</p>
+    </div>
+    <div class="container-fluid mt-5 main-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

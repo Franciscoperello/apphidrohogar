@@ -1,0 +1,19 @@
+<body>
+    <div class="contenedor container-fluid" *ngIf="product">
+        <div class="row">
+            <div class="izquierda col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <img id="foto" [src]="product.imgSrc">
+                <h1>caracteristicas {{ product.caracteristicas }}</h1>
+                    <p>modelo</p>
+            </div>
+        
+            <div class="derecha col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                    <h1>Nombre: {{ product.nombre }}</h1>
+                    <h1>Descripcion: {{ product.descripcion }}</h1>
+                    <h1>Precio: {{ product.precio }} €</h1>
+                    <button class="btn btn-primary" (click)="addToCart(product.id)">Añadir al carrito</button>
+            </div>
+        </div>   
+    </div>
+</body>
+  
