@@ -9,7 +9,7 @@ import { APIResponseModel, ICategory, IProduct } from '../model/Models';
 export class ProductService {
 
   apiUrl: string = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/products/';
-  apiUrl2: string = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/products/';
+  apiUrl2: string = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/categories/';
 
   constructor(private http: HttpClient) {}
 
