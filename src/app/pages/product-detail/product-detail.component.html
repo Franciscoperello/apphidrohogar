@@ -1,13 +1,13 @@
 <body>
     <div class="contenedor container-fluid" *ngIf="product">
         <div class="row">
-            <div class="izquierda col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-                <img id="foto" [src]="product.imgSrc">
+            <div class="izquierda col">
+                <img id="foto" class="img-fluid" [src]="product.imgSrc">
                 <h1>caracteristicas {{ product.caracteristicas }}</h1>
                     <p>modelo</p>
             </div>
         
-            <div class="derecha col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="derecha col">
                     <h1>Nombre: {{ product.nombre }}</h1>
                     <h1>Descripcion: {{ product.descripcion }}</h1>
                     <h1>Precio: {{ product.precio }} €</h1>
@@ -16,4 +16,3 @@
         </div>   
     </div>
 </body>
-  
