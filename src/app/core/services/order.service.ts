@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/orders';
+  private apiUrl = 'https://apihydrohogar-e4b85f28b833.herokuapp.com/orders/orders';
 
   constructor(private http: HttpClient) {}
 
